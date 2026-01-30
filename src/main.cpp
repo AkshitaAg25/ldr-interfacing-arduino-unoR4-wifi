@@ -1,8 +1,20 @@
 #include <Arduino.h>
+#define LDR_PIN A0
+
 void setup() {
-// write your initialization code here
+    Serial.begin(9600);
+    while (!Serial);
+    // write your initialization code here
 }
 
 void loop() {
-// write your code here
+    int ldrRaw = analogRead(LDR_PIN);
+    int lightPercentage = map(ldrRaw, 0, 1023, 0, 100);
+    Serial.print("LDR Raw:");
+    Serial.print(ldrRaw);
+    Serial.print("| Light: ");
+    Serial.print(lightPercentage);
+    Serial.println("%");
+    delay(500);
+    // write your code here
 }
